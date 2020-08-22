@@ -52,10 +52,9 @@ public class Asalariado extends Empleado {
 		   
 		   return 0;
 	   }
-	   else 
-	   {
+	   
 		   return salarioSemanal;
-	   }
+	   
 	}
 
 }

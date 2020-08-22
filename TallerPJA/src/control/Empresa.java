@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import entidades.Empleado;
 import entidades.FabricaEmpleados;
+import persistencia.ListaEmpleados;
 import persistencia.OrmBaseDatos;
 
 /**
@@ -22,9 +23,14 @@ public class Empresa  {
 private RepositorioEmpleados repositorioEmpleados;
 
 public Empresa() {
+	 repositorioEmpleados = new OrmBaseDatos();
+	//repositorioEmpleados= new ListaEmpleados();
 	
-	repositorioEmpleados= new OrmBaseDatos();
 	}
+public Empresa(RepositorioEmpleados repositorioEmpleados)  {
+	this.repositorioEmpleados = repositorioEmpleados;
+}
+
 
 
    
