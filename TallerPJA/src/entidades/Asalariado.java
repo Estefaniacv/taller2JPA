@@ -1,5 +1,14 @@
 package entidades;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+/**
+ * Un empleado que se le paga un salario semanal
+ * fijo independiente a sus horas laboradas
+ * @version 1.0
+ */
+@Entity
+@DiscriminatorValue("asalariado")
 public class Asalariado extends Empleado {
 	
 	private double salarioSemanal;
@@ -12,8 +21,23 @@ public class Asalariado extends Empleado {
 	public Asalariado(int identificador, String nombre,double salarioSemanal) {
 		super(identificador, nombre);
 		this.salarioSemanal=salarioSemanal;
-		// TODO Auto-generated constructor stub
+	
 	}
+	
+	//constructor usado por el OMR para la persistencia
+    public Asalariado() {
+	   
+	  }
+	
+	public double getSalarioSemanal() {
+		return salarioSemanal;
+	}
+   
+	//los metodos set son usados por el ORM para persistencia
+	public void setSalarioSemanal(double salarioSemanal) {
+		this.salarioSemanal = salarioSemanal;
+	}
+
 
 	
 	/**
@@ -23,7 +47,7 @@ public class Asalariado extends Empleado {
 	 */
 	@Override
 	
-	public double calcularpago() {
+	public double calcularPago() {
 	   if(salarioSemanal==0) {
 		   
 		   return 0;

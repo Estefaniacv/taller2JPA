@@ -2,6 +2,11 @@ package control;
 
 
 import persistencia.RepositorioEmpleados;
+
+import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import entidades.Empleado;
 import entidades.FabricaEmpleados;
 import persistencia.OrmBaseDatos;
@@ -20,6 +25,8 @@ public Empresa() {
 	
 	repositorioEmpleados= new OrmBaseDatos();
 	}
+
+
    
 /**
  * Se adiciona un empleado a la empresa, es decir, se registra su información y se guarda.
@@ -57,17 +64,33 @@ public Empleado buscarEmpleado(int identificador) {
  * buscándolo previamente por su número de identificacion
  * @throws BarcoException si no encuentra un barco con esa matrícula.
  */
-public void borrarBarco(int identificador) {
+public void borrarEmpleado(int identificador) {
 	Empleado empleadoBuscado = repositorioEmpleados.buscarEmpleado(identificador);
 	if (empleadoBuscado == null) {
+		JOptionPane.showMessageDialog(null,"no se encontro el empleado buscado");
 
 	}
 	
 	boolean pudoBorrar = repositorioEmpleados.borrarEmpleado(empleadoBuscado);
 	
 	if (!pudoBorrar) {
+		JOptionPane.showMessageDialog(null,"No se pudo borrar el empleado de la base de datos");
+
 	
 	}
+}
+
+/**
+ * Calcula la nomina  total de la semana de todos los empleados en la empresa
+ * @return	el valor total a pagar
+ */
+public double calcularNominaTotal() {
+	List<Empleado> empleados = repositorioEmpleados.consultarEmpleados();
+	double nominaTotal = 0;
+	for (Empleado empleado : empleados) {
+		nominaTotal += empleado.calcularPago();
+	}
+	return nominaTotal;
 }
 
 }
