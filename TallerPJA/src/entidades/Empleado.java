@@ -4,6 +4,12 @@ public abstract class Empleado {
 	private int identificador;
 	private String nombre;
 	
+	/**
+	 * @param identificador	numero que identifica al empleado
+	 * @param nombre nombre del empleado
+
+	 */
+	
 	public Empleado(int identificador,String nombre) {
 		this.identificador=identificador;
 		this.nombre=nombre;
